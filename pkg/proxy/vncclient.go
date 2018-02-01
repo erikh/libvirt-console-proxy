@@ -29,8 +29,9 @@ import (
 	"crypto/tls"
 	"encoding/binary"
 	"fmt"
-	"golang.org/x/net/websocket"
 	"net"
+
+	"golang.org/x/net/websocket"
 )
 
 type ConsoleClientVNC struct {

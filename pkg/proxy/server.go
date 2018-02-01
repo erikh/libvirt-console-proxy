@@ -28,11 +28,12 @@ package proxy
 import (
 	"crypto/tls"
 	"fmt"
-	"github.com/golang/glog"
-	"golang.org/x/net/websocket"
 	"net"
 	"net/http"
 	"os"
+
+	"github.com/golang/glog"
+	"golang.org/x/net/websocket"
 )
 
 type ConsoleServer struct {
@@ -100,6 +101,7 @@ func (s *ConsoleServer) handleClient(tenant *websocket.Conn) {
 
 		tokenValue = token[0]
 	}
+
 	if tokenValue == "" {
 		fmt.Fprintln(os.Stderr, "Need a non-empty token for console access")
 		return

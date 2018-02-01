@@ -29,14 +29,21 @@ import (
 	"crypto/tls"
 	"encoding/json"
 	"fmt"
-	"github.com/golang/glog"
 	"io/ioutil"
 	"net/http"
 	"net/url"
+	"sync"
+
+	"github.com/golang/glog"
 )
 
 type Resolver interface {
 	Resolve(token string) (*ServiceConfig, error)
+}
+
+type MapResolver struct {
+	tokens map[string]*ServiceConfig
+	mutex  *sync.Mutex
 }
 
 type BuiltinResolver struct {
@@ -73,6 +80,33 @@ func (r *BuiltinResolver) Resolve(token string) (*ServiceConfig, error) {
 	}
 
 	return &entry, nil
+}
+
+func NewMapResolver() MapResolver {
+	return MapResolver{tokens: map[string]*ServiceConfig{}, mutex: new(sync.Mutex)}
+}
+
+func (mr MapResolver) Resolve(token string) (*ServiceConfig, error) {
+	mr.mutex.Lock()
+	defer mr.mutex.Unlock()
+	entry, ok := mr.tokens[token]
+	if !ok {
+		return nil, fmt.Errorf("No token found with id '%s'", token)
+	}
+
+	return entry, nil
+}
+
+func (mr MapResolver) Add(token string, service *ServiceConfig) {
+	mr.mutex.Lock()
+	defer mr.mutex.Unlock()
+	mr.tokens[token] = service
+}
+
+func (mr MapResolver) Delete(token string) {
+	mr.mutex.Lock()
+	defer mr.mutex.Unlock()
+	delete(mr.tokens, token)
 }
 
 func NewExternalResolver(connectURI string, tlsConfig *tls.Config) (*ExternalResolver, error) {

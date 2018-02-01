@@ -32,7 +32,7 @@ import (
 	"github.com/libvirt/libvirt-go"
 	"github.com/spf13/cobra"
 
-	"libvirt.org/libvirt-console-proxy/pkg/resolver"
+	"github.com/erikh/libvirt-console-proxy/pkg/resolver"
 )
 
 var disableCmd = &cobra.Command{

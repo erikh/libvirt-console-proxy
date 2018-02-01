@@ -34,7 +34,7 @@ import (
 	"github.com/satori/go.uuid"
 	"github.com/spf13/cobra"
 
-	"libvirt.org/libvirt-console-proxy/pkg/resolver"
+	"github.com/erikh/libvirt-console-proxy/pkg/resolver"
 )
 
 var (

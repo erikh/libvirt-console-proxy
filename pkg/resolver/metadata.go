@@ -35,7 +35,7 @@ import (
 /*
  * The libvirt metadata is in namespace
  *
- *   xmlns:lcp="http://libvirt.org/schemas/console-proxy/1.0"
+ *   xmlns:lcp="http://github.com/erikh/schemas/console-proxy/1.0"
  *
  * It can represent multiple consoles per guest domain. Each exposed
  * console must provide a globally unique secret token value. This
@@ -57,7 +57,7 @@ import (
  * </lcp:consoles>
  */
 
-const xmlns = "http://libvirt.org/schemas/console-proxy/1.0"
+const xmlns = "http://github.com/erikh/schemas/console-proxy/1.0"
 const xmlprefix = "lcp"
 
 type ConsoleServerProxyMetadataConsole struct {

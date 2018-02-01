@@ -29,7 +29,7 @@ import (
 	"fmt"
 	"os"
 
-	"libvirt.org/libvirt-console-proxy/cmd/virtconsoleresolveradm/cmd"
+	"github.com/erikh/libvirt-console-proxy/cmd/virtconsoleresolveradm/cmd"
 )
 
 func main() {

@@ -33,7 +33,7 @@ import (
 	"github.com/golang/glog"
 	"github.com/spf13/pflag"
 	"io/ioutil"
-	"libvirt.org/libvirt-console-proxy/pkg/resolver"
+	"github.com/erikh/libvirt-console-proxy/pkg/resolver"
 	"os"
 )
 
